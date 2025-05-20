@@ -23,6 +23,8 @@ int conferma_scelta();
 int ins_checked_input_i();
 double ins_checked_input_d();
 
+void inserimento_funzione(vector<Function*> &list);
+
 // template <typename T>
 // bool inserisci_funzione(T funct, vector<Function*> &array);
 

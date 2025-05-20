@@ -154,7 +154,7 @@ void Logarithmic::WarningMessage(const char *string) {
 void Logarithmic::Dump() {
 
     if(b_coeff > 0) {
-        std::cout << "Dump: " << k_coeff << "*log" << b_coeff << "(x)" << std::endl;
+        std::cout << k_coeff << "*log" << b_coeff << "(x)" << std::endl;
     } else {
         std::cout << "Dump: Errore: Logaritmo a base negativa o nulla" << std::endl;
     }

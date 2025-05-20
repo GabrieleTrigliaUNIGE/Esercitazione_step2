@@ -154,7 +154,7 @@ void Exponential::WarningMessage(const char *string) {
 void Exponential::Dump() {
 
     if(b_coeff > 0) {
-        std::cout << "Dump: " << k_coeff << "*" << b_coeff << "^" << c_coeff << "x" << std::endl;
+        std::cout << k_coeff << "*" << b_coeff << "^" << c_coeff << "x" << std::endl;
     } else {
         std::cout << "Dump: Esponenziale non inizializzato o con base negativa o nulla" << std::endl;
     }

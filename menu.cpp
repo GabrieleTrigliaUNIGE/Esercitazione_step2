@@ -10,6 +10,9 @@
 #include <vector>
 #include <string>
 #include "CFunction.h"
+#include "CPolynomial.h"
+#include "CExponential.h"
+#include "CLogarithmic.h"
 #include "menu.h"
 using namespace std;
 
@@ -47,7 +50,7 @@ void print_list(vector<Function *> &list)
 
     for (int i = 0; i < list.size(); i++)
     {
-        cout << i + 1 << ".\t";
+        cout << i + 1 << ".  ";
         list.at(i)->Dump();
     }
 }
@@ -111,7 +114,8 @@ bool valuta(vector<Function *> &list, int id)
     return true;
 }
 
-int inserisci_ID() {
+int inserisci_ID()
+{
     string id_s;
     cout << "Inserire ID: ";
     cin >> id_s;
@@ -119,14 +123,15 @@ int inserisci_ID() {
     {
         return stoi(id_s);
     }
-    catch(const exception& e)
+    catch (const exception &e)
     {
         cerr << "ERROR: " << e.what() << " --> Valore non valido\n";
         return (int)NAN;
     }
 }
 
-int conferma_scelta(){
+int conferma_scelta()
+{
     string conferma;
     cout << "Conferma? [0 -> no / 1 -> si]: "; // FARE FUNZIONE?
     cin >> conferma;
@@ -134,40 +139,122 @@ int conferma_scelta(){
     {
         return stoi(conferma);
     }
-    catch(const exception& e)
+    catch (const exception &e)
     {
         cerr << "ERROR: " << e.what() << " --> Valore non valido\n";
         return (int)NAN;
     }
 }
 
-int ins_checked_input_i() {
+int ins_checked_input_i()
+{
     string input;
     cin >> input;
     try
     {
         return stoi(input);
     }
-    catch(const exception& e)
+    catch (const exception &e)
     {
         cerr << "ERROR: " << e.what() << " --> Valore non valido\n";
         return (int)NAN;
     }
 }
 
-double ins_checked_input_d() {
+double ins_checked_input_d()
+{
     string input;
     cin >> input;
     try
     {
         return stod(input);
     }
-    catch(const exception& e)
+    catch (const exception &e)
     {
         cerr << "ERROR: " << e.what() << " --> Valore non valido\n";
         return NAN;
     }
-} 
+}
+
+void inserimento_funzione(vector<Function *> &list)
+{
+    int scelta_funzione_i;
+    cout << "Inserisci funzione" << endl;
+    print_menu_funzioni();
+    cout << "Inserisci scelta funzione: ";
+    scelta_funzione_i = ins_checked_input_i();
+    switch (scelta_funzione_i)
+    {
+    case 1:
+    {
+
+        cout << "=== Inserimento Polinomio ===" << endl;
+        int grado;
+        cout << "Inserire grado polinomio: ";
+        grado = ins_checked_input_i();
+        double *coeff = new double[grado + 1];
+        if (coeff)
+        {
+            for (int i = 0; i < grado + 1; i++)
+            {
+                cout << "Inserisci coefficiente grado " << i << endl;
+                coeff[i] = ins_checked_input_d();
+            }
+
+            list.push_back(new Polynomial(coeff, grado + 1));
+        }
+        else
+        {
+            cout << "FATAL: Impossibile allocare memoria";
+            exit(-1);
+        }
+
+        list.back()->Dump();
+
+        if (conferma_scelta() != 1)
+            list.pop_back();
+
+        delete coeff;
+        break;
+    }
+    case 2:
+    {
+        double base, esponente, k;
+        cout << "=== Inserimento Esponenziale ===" << endl;
+        cout << "Inserisci base: ";
+        base = ins_checked_input_d();
+        cout << "Inserisci esponente: ";
+        esponente = ins_checked_input_d();
+        cout << "Inserisci coefficiente k: ";
+        k = ins_checked_input_d();
+
+        list.push_back(new Exponential(base, esponente, k));
+        list.back()->Dump();
+
+        if (conferma_scelta() != 1)
+            list.pop_back();
+
+        break;
+    }
+
+    case 3:
+    {
+        double base, argomento;
+        cout << "=== Inserimento Logaritmo ===" << endl;
+        cout << "Inserisci base: ";
+        base = ins_checked_input_d();
+        cout << "Inserisci argomento: ";
+        argomento = ins_checked_input_d();
+
+        list.push_back(new Logarithmic(base, argomento));
+        list.back()->Dump();
+
+        if (conferma_scelta() != 1)
+            list.pop_back();
+        break;
+    }
+    }
+}
 // template <class T>
 // bool inserisci_funzione(T funct, vector<Function*> &array) {
 //     if(array.push_back(new T()))
