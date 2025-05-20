@@ -15,8 +15,11 @@ using namespace std;
 
 void print_menu();
 void print_menu_funzioni();
+void print_list(vector<Function*> &list);
+bool elimina_funzione(vector<Function*> &list, int id);
+bool valuta(vector<Function*> &list, int id);
 
-template <typename T>
-bool inserisci_funzione(T funct, vector<Function*> &array);
+// template <typename T>
+// bool inserisci_funzione(T funct, vector<Function*> &array);
 
 #endif /* MENU_H */
