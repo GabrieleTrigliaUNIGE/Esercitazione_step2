@@ -18,6 +18,10 @@ void print_menu_funzioni();
 void print_list(vector<Function*> &list);
 bool elimina_funzione(vector<Function*> &list, int id);
 bool valuta(vector<Function*> &list, int id);
+int inserisci_ID();
+int conferma_scelta();
+int ins_checked_input_i();
+double ins_checked_input_d();
 
 // template <typename T>
 // bool inserisci_funzione(T funct, vector<Function*> &array);

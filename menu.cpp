@@ -101,16 +101,73 @@ bool valuta(vector<Function *> &list, int id)
         return false;
     }
 
-    if (id > 0 && id < list.size())
+    if (id >= 0 && id < list.size())
     {
         cout << "Inserire valore di x: ";
         cin >> value_s;
         double value = stod(value_s);
-        cout << "Funzione valutata in x=" << value << " : " << list.at(id)->GetValue(value);
+        cout << "Funzione valutata in x=" << value << " : " << list.at(id)->GetValue(value) << endl;
     }
     return true;
 }
 
+int inserisci_ID() {
+    string id_s;
+    cout << "Inserire ID: ";
+    cin >> id_s;
+    try
+    {
+        return stoi(id_s);
+    }
+    catch(const exception& e)
+    {
+        cerr << "ERROR: " << e.what() << " --> Valore non valido\n";
+        return (int)NAN;
+    }
+}
+
+int conferma_scelta(){
+    string conferma;
+    cout << "Conferma? [0 -> no / 1 -> si]: "; // FARE FUNZIONE?
+    cin >> conferma;
+    try
+    {
+        return stoi(conferma);
+    }
+    catch(const exception& e)
+    {
+        cerr << "ERROR: " << e.what() << " --> Valore non valido\n";
+        return (int)NAN;
+    }
+}
+
+int ins_checked_input_i() {
+    string input;
+    cin >> input;
+    try
+    {
+        return stoi(input);
+    }
+    catch(const exception& e)
+    {
+        cerr << "ERROR: " << e.what() << " --> Valore non valido\n";
+        return (int)NAN;
+    }
+}
+
+double ins_checked_input_d() {
+    string input;
+    cin >> input;
+    try
+    {
+        return stod(input);
+    }
+    catch(const exception& e)
+    {
+        cerr << "ERROR: " << e.what() << " --> Valore non valido\n";
+        return NAN;
+    }
+} 
 // template <class T>
 // bool inserisci_funzione(T funct, vector<Function*> &array) {
 //     if(array.push_back(new T()))

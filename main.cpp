@@ -24,13 +24,7 @@ using namespace std;
 int main()
 {
     vector<Function *> functionList;
-    string scelta; // ATTENZIONE INPUT CONTROLLARE!!!  
-    int scelta_i;
-    string scelta_funzione; // fare funzione che controlla input
-    int scelta_funzione_i;
-    string conferma_s;
-    string id_s;
-
+    int scelta;
     // TEST
     // Function *f = new Exponential(2, 2, 3);
     // functionList.push_back(f);
@@ -39,9 +33,8 @@ int main()
     {
         print_menu();
         cout << "Inserisci scelta: ";
-        cin >> scelta;
-        scelta_i = stoi(scelta); // controllo input
-        switch (scelta_i)
+        scelta = ins_checked_input_i(); // controllo input
+        switch (scelta)
         {
         case 0:
         {
@@ -58,27 +51,27 @@ int main()
             
         case 2:
         {
+            int scelta_funzione_i;
             cout << "Inserisci funzione" << endl;
             print_menu_funzioni();
             cout << "Inserisci scelta funzione: ";
-            cin >> scelta_funzione;
-            scelta_funzione_i = stoi(scelta_funzione); // contorllo input
+            scelta_funzione_i = ins_checked_input_i();
             switch (scelta_funzione_i)
-            { // MIGLIORARE CON FUNZIONE
+            {
             case 1:
             {
 
                 cout << "=== Inserimento Polinomio ===" << endl;
                 int grado;
-                cout << "Inserire grado polinomio: ";  // controllo inputs
-                cin >> grado;
+                cout << "Inserire grado polinomio: ";
+                grado = ins_checked_input_i();
                 double *coeff = new double[grado + 1];
                 if (coeff)
                 {
                     for (int i = 0; i < grado + 1; i++)
                     {
                         cout << "Inserisci coefficiente grado " << i << endl;
-                        cin >> coeff[i];
+                        coeff[i] = ins_checked_input_d();
                     }
 
                     functionList.push_back(new Polynomial(coeff, grado + 1));
@@ -88,11 +81,8 @@ int main()
                 }
 
                 functionList.back()->Dump();
-                cout << "Conferma? [0 -> no / 1 -> si]: "; // FARE FUNZIONE?
-                cin >> conferma_s;
-                int conferma = stoi(conferma_s);
 
-                if (conferma != 1)
+                if (conferma_scelta() != 1)
                     functionList.pop_back();
 
                 delete coeff;
@@ -100,23 +90,19 @@ int main()
             }
             case 2:
             {
-                cout << "=== Inserimento Esponenziale ===" << endl;
                 double base, esponente, k;
+                cout << "=== Inserimento Esponenziale ===" << endl;
                 cout << "Inserisci base: ";
-                cin >> base;
+                base = ins_checked_input_d();
                 cout << "Inserisci esponente: ";
-                cin >> esponente;
+                esponente = ins_checked_input_d();
                 cout << "Inserisci coefficiente k: ";
-                cin >> k;
+                k = ins_checked_input_d();
 
                 functionList.push_back(new Exponential(base, esponente, k));
                 functionList.back()->Dump();
 
-                cout << "Conferma? [0 -> no / 1 -> si]: "; // FARE FUNZIONE?
-                cin >> conferma_s;
-                int conferma = stoi(conferma_s);
-
-                if (conferma != 1)
+                if (conferma_scelta() != 1)
                     functionList.pop_back();
 
                 break;
@@ -124,21 +110,17 @@ int main()
 
             case 3:
             {
-                cout << "=== Inserimento Logaritmo ===" << endl;
                 double base, argomento;
+                cout << "=== Inserimento Logaritmo ===" << endl;
                 cout << "Inserisci base: ";
-                cin >> base;
+                base = ins_checked_input_d();
                 cout << "Inserisci argomento: ";
-                cin >> argomento;
+                argomento = ins_checked_input_d();
 
                 functionList.push_back(new Logarithmic(base, argomento));
                 functionList.back()->Dump();
 
-                cout << "Conferma? [0 -> no / 1 -> si]: "; // FARE FUNZIONE?
-                cin >> conferma_s;
-                int conferma = stoi(conferma_s);
-
-                if (conferma != 1)
+                if (conferma_scelta() != 1)
                     functionList.pop_back();
                 break;
             }
@@ -150,9 +132,7 @@ int main()
         {
             cout << "Seleziona una funzione da eliminare" << endl;
             print_list(functionList);
-            cout << "Inserire ID: ";  // funzione ID
-            cin >> id_s;
-            int id = stoi(id_s);
+            int id = inserisci_ID();
 
             if (elimina_funzione(functionList, id-1))
                 cout << "funzione eliminata" << endl;       
@@ -172,9 +152,7 @@ int main()
         {
             cout << "\n\t=== Seleziona una funzione ===" << endl;
             print_list(functionList);
-            cout << "Inserire ID: ";  // fare funzione ID
-            cin >> id_s;
-            int id = stoi(id_s);
+            int id = inserisci_ID();
             valuta(functionList, id-1);
             break;
         }
@@ -185,7 +163,7 @@ int main()
             break;
         }
         }
-    } while (scelta_i != 0);
+    } while (scelta != 0);
 
     return 0;
 }
