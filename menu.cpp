@@ -55,7 +55,7 @@ void print_list(vector<Function *> &list)
         return;
     }
 
-    for (int i = 0; i < list.size(); i++)
+    for (int i = 0; i < (int)list.size(); i++)
     {
         cout << i + 1 << ".  ";
         list.at(i)->Dump();
@@ -87,7 +87,7 @@ bool elimina_funzione(vector<Function *> &list, int id)
 
     if (conf)
     {
-        if (id >= 0 && id < list.size())
+        if (id >= 0 && id < (int)list.size())
         {
             list.erase(list.begin() + id);
             ret = true;
@@ -122,7 +122,7 @@ bool valuta(vector<Function *> &list, int id)
         return false;
     }
 
-    if (id >= 0 && id < list.size())
+    if (id >= 0 && id < (int)list.size())
     {
         cout << "Inserire valore di x: ";
         cin >> value_s;
@@ -291,6 +291,9 @@ void inserimento_funzione(vector<Function *> &list)
             list.pop_back();
         break;
     }
+
+    default:
+        cout << "Scelta non valida" << endl;
     }
 }
 // template <class T>

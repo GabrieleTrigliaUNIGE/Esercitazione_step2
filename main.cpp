@@ -33,7 +33,7 @@ int main()
     {
         print_menu();
         cout << "Inserisci scelta: ";
-        scelta = ins_checked_input_i();
+        scelta = ins_checked_input_i(); // Problema: in caso di exception entra nel case 0 --> TO BE FIXED !!!
         switch (scelta)
         {
         case 0:
@@ -93,3 +93,5 @@ int main()
 
     return 0;
 }
+
+// NICE TO HAVE: Riesecuzione delle funzioni di inserimento dati in caso di dato errato
