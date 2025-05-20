@@ -33,7 +33,7 @@ int main()
     {
         print_menu();
         cout << "Inserisci scelta: ";
-        scelta = ins_checked_input_i(); // controllo input
+        scelta = ins_checked_input_i();
         switch (scelta)
         {
         case 0:
