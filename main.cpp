@@ -33,14 +33,14 @@ int main()
     {
         print_menu();
         cout << "Inserisci scelta: ";
-        scelta = ins_checked_input_i(); // Problema: in caso di exception entra nel case 0 --> TO BE FIXED !!!
+        scelta = ins_checked_input_i();
         switch (scelta)
         {
         case 0:
         {
             cout << "Uscita programma" << endl;
             break;
-        }  
+        }
 
         case 1:
         {
@@ -48,7 +48,7 @@ int main()
             print_list(functionList);
             break;
         }
-            
+
         case 2:
         {
             inserimento_funzione(functionList);
@@ -60,8 +60,8 @@ int main()
             print_list(functionList);
             int id = inserisci_ID();
 
-            if (elimina_funzione(functionList, id-1))
-                cout << "funzione eliminata" << endl;       
+            if (elimina_funzione(functionList, id - 1))
+                cout << "funzione eliminata" << endl;
             else
                 cout << "funzione non eliminata" << endl;
             break;
@@ -79,7 +79,7 @@ int main()
             cout << "\n\t=== Seleziona una funzione ===" << endl;
             print_list(functionList);
             int id = inserisci_ID();
-            valuta(functionList, id-1);
+            valuta(functionList, id - 1);
             break;
         }
 

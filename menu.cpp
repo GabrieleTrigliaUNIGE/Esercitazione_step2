@@ -14,6 +14,7 @@
 #include "CExponential.h"
 #include "CLogarithmic.h"
 #include "menu.h"
+#include <climits>
 using namespace std;
 
 /**
@@ -118,7 +119,7 @@ bool valuta(vector<Function *> &list, int id)
     }
     catch (const exception &e)
     {
-        cerr << "Array out of bound: " << e.what() << '\n';
+        cerr << "Array out of bound: Elemento non esistente";
         return false;
     }
 
@@ -187,7 +188,7 @@ int ins_checked_input_i()
     catch (const exception &e)
     {
         cerr << "ERROR: " << e.what() << " --> Valore non valido\n";
-        return (int)NAN;
+        return INT_MIN;
     }
 }
 
@@ -230,9 +231,10 @@ void inserimento_funzione(vector<Function *> &list)
         int grado;
         cout << "Inserire grado polinomio: ";
         grado = ins_checked_input_i();
-        double *coeff = new double[grado + 1];
-        if (coeff)
+        try
         {
+            double *coeff = new double[grado + 1];
+
             for (int i = 0; i < grado + 1; i++)
             {
                 cout << "Inserisci coefficiente grado " << i << endl;
@@ -240,19 +242,18 @@ void inserimento_funzione(vector<Function *> &list)
             }
 
             list.push_back(new Polynomial(coeff, grado + 1));
+
+            list.back()->Dump();
+
+            if (conferma_scelta() != 1)
+                list.pop_back();
+
+            delete coeff;
         }
-        else
+        catch (const exception &e)
         {
-            cout << "FATAL: Impossibile allocare memoria";
-            exit(-1);
+            cout << "Errore allocazione: annulamento creazione Polinomio";
         }
-
-        list.back()->Dump();
-
-        if (conferma_scelta() != 1)
-            list.pop_back();
-
-        delete coeff;
         break;
     }
     case 2:
@@ -296,6 +297,7 @@ void inserimento_funzione(vector<Function *> &list)
         cout << "Scelta non valida" << endl;
     }
 }
+
 // template <class T>
 // bool inserisci_funzione(T funct, vector<Function*> &array) {
 //     if(array.push_back(new T()))
