@@ -22,14 +22,15 @@ using namespace std;
  */
 void print_menu()
 {
-    cout << "\t\t\t==== MENU PRINCIPALE ====" << endl;
+    cout << "\t==== MENU PRINCIPALE ====" << endl;
     cout << "0 - Esci dal menu" << endl;
     cout << "1 - Visualizza la lista delle funzioni" << endl;
     cout << "2 - Inserisci una funzione" << endl;
     cout << "3 - Elimina una funzione" << endl;
     cout << "4 - Elimina tutte le funzioni" << endl;
     cout << "5 - Seleziona una funzione" << endl;
-    cout << "\t\t\t=========================" << endl;
+    cout << "\t=========================\n"
+         << endl;
 }
 
 /**
@@ -37,11 +38,12 @@ void print_menu()
  */
 void print_menu_funzioni()
 {
-    cout << "\t==== MENU FUNZIONI ====" << endl;
+    cout << "\t=== MENU FUNZIONI ===" << endl;
     cout << "1 - POLINOMIO" << endl;
     cout << "2 - ESPONENZIALE" << endl;
     cout << "3 - LOGARITMO" << endl;
-    cout << "\t=========================" << endl;
+    cout << "\t=======================\n"
+         << endl;
 }
 
 /**
@@ -52,7 +54,8 @@ void print_list(vector<Function *> &list)
 {
     if (list.size() == 0)
     {
-        cout << "Lista vuota" << endl;
+        cout << "Lista vuota\n"
+             << endl;
         return;
     }
 
@@ -95,12 +98,14 @@ bool elimina_funzione(vector<Function *> &list, int id)
         }
         else
         {
-            cout << "ID funzione non corretto" << endl;
+            cout << "ID funzione non corretto\n"
+                 << endl;
             ret = false;
         }
     }
     else
         ret = false;
+    cout << endl;
     return ret;
 }
 
@@ -119,13 +124,14 @@ bool valuta(vector<Function *> &list, int id)
     }
     catch (const exception &e)
     {
-        cerr << "Array out of bound: Elemento non esistente";
+        cerr << "Array out of bound: Elemento non esistente\n"
+             << endl;
         return false;
     }
 
     if (id >= 0 && id < (int)list.size())
     {
-        cout << "Inserire valore di x: ";
+        cout << "Inserire valore di x: \n>_ ";
         cin >> value_s;
         double value = stod(value_s);
         cout << "Funzione valutata in x=" << value << " : " << list.at(id)->GetValue(value) << endl;
@@ -140,7 +146,7 @@ bool valuta(vector<Function *> &list, int id)
 int inserisci_ID()
 {
     string id_s;
-    cout << "Inserire ID: ";
+    cout << "Inserire ID: \n>_ ";
     cin >> id_s;
     try
     {
@@ -164,11 +170,13 @@ int conferma_scelta()
     cin >> conferma;
     try
     {
+        cout << endl;
         return stoi(conferma);
     }
     catch (const exception &e)
     {
-        cerr << "ERROR: " << e.what() << " --> Valore non valido\n";
+        cerr << "ERROR: " << e.what() << " --> Valore non valido\n"
+             << endl;
         return (int)NAN;
     }
 }
@@ -187,7 +195,8 @@ int ins_checked_input_i()
     }
     catch (const exception &e)
     {
-        cerr << "ERROR: " << e.what() << " --> Valore non valido\n";
+        cerr << "ERROR: " << e.what() << " --> Valore non valido\n"
+             << endl;
         return INT_MIN;
     }
 }
@@ -202,11 +211,13 @@ double ins_checked_input_d()
     cin >> input;
     try
     {
+        cout << endl;
         return stod(input);
     }
     catch (const exception &e)
     {
-        cerr << "ERROR: " << e.what() << " --> Valore non valido\n";
+        cerr << "ERROR: " << e.what() << " --> Valore non valido\n"
+             << endl;
         return NAN;
     }
 }
@@ -226,10 +237,10 @@ void inserimento_funzione(vector<Function *> &list)
     {
     case 1:
     {
-
-        cout << "=== Inserimento Polinomio ===" << endl;
+        cout << "\n\t=== Inserimento Polinomio ===\n"
+             << endl;
         int grado;
-        cout << "Inserire grado polinomio: ";
+        cout << "Inserire grado polinomio: \n>_ ";
         grado = ins_checked_input_i();
         try
         {
@@ -237,7 +248,7 @@ void inserimento_funzione(vector<Function *> &list)
 
             for (int i = 0; i < grado + 1; i++)
             {
-                cout << "Inserisci coefficiente grado " << i << endl;
+                cout << "Inserisci coefficiente grado ()" << i << ":\n>_  ";
                 coeff[i] = ins_checked_input_d();
             }
 
@@ -252,19 +263,21 @@ void inserimento_funzione(vector<Function *> &list)
         }
         catch (const exception &e)
         {
-            cout << "Errore allocazione: annulamento creazione Polinomio";
+            cout << "Errore allocazione: annulamento creazione Polinomio\n"
+                 << endl;
         }
         break;
     }
     case 2:
     {
         double base, esponente, k;
-        cout << "=== Inserimento Esponenziale ===" << endl;
-        cout << "Inserisci base: ";
+        cout << "\n\t=== Inserimento Esponenziale ===\n"
+             << endl;
+        cout << "Inserisci base: \n>_ ";
         base = ins_checked_input_d();
-        cout << "Inserisci esponente: ";
+        cout << "Inserisci esponente: \n>_ ";
         esponente = ins_checked_input_d();
-        cout << "Inserisci coefficiente k: ";
+        cout << "Inserisci coefficiente k: \n>_ ";
         k = ins_checked_input_d();
 
         list.push_back(new Exponential(base, esponente, k));
@@ -280,9 +293,9 @@ void inserimento_funzione(vector<Function *> &list)
     {
         double base, argomento;
         cout << "=== Inserimento Logaritmo ===" << endl;
-        cout << "Inserisci base: ";
+        cout << "Inserisci base: \n>_ ";
         base = ins_checked_input_d();
-        cout << "Inserisci argomento: ";
+        cout << "Inserisci argomento: \n>_ ";
         argomento = ins_checked_input_d();
 
         list.push_back(new Logarithmic(base, argomento));

@@ -25,26 +25,31 @@ int main()
 {
     vector<Function *> functionList;
     int scelta;
+    // int id; // SE DEFINISCO QUA id POSSO TOGLIERE LA RIDEFINIZIONE DELLO SCOPE NEL CASE
     // TEST
     // Function *f = new Exponential(2, 2, 3);
     // functionList.push_back(f);
+    cout << "\t=== GESTIONE FUNZIONI ===\nBenvenuto.\n" << endl;
 
     do
     {
         print_menu();
-        cout << "Inserisci scelta: ";
+        cout << "Inserisci scelta: \n>_ ";
         scelta = ins_checked_input_i();
         switch (scelta)
         {
         case 0:
         {
-            cout << "Uscita programma" << endl;
+            cout << "\t=== Uscita programma ===\n"
+                 << endl;
+            cout << "Arrivederci." << endl;
             break;
         }
 
         case 1:
         {
-            cout << "Stampa lista funzioni" << endl;
+            cout << "\t=== Stampa lista funzioni ===\n"
+                 << endl;
             print_list(functionList);
             break;
         }
@@ -56,7 +61,8 @@ int main()
         }
         case 3:
         {
-            cout << "Seleziona una funzione da eliminare" << endl;
+            cout << "\t=== Seleziona una funzione da eliminare ===\n"
+                 << endl;
             print_list(functionList);
             int id = inserisci_ID();
 
@@ -69,23 +75,31 @@ int main()
 
         case 4:
         {
-            cout << "Elimina tutte le funzioni" << endl;
+            cout << "\t=== Elimina tutte le funzioni ===\n"
+                 << endl;
             functionList.clear();
             break;
         }
 
         case 5:
         {
-            cout << "\n\t=== Seleziona una funzione ===" << endl;
-            print_list(functionList);
-            int id = inserisci_ID();
-            valuta(functionList, id - 1);
+            cout << "\t=== Seleziona una funzione ===\n" << endl;
+            if (functionList.size() == 0)
+            {
+                cout << "Lista funzioni vuota: \nInserisci una funzione prima!\n" << endl;
+            }
+            else
+            {
+                print_list(functionList);
+                int id = inserisci_ID();
+                valuta(functionList, id - 1);
+            }
             break;
         }
 
         default:
         {
-            cout << "Scelta non valida" << endl;
+            cout << "\t=!= Scelta non valida =!=\n" << endl;
             break;
         }
         }
