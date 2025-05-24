@@ -6,14 +6,9 @@
     Interfaccia utente gestione funzioni
 */
 #include <iostream>
-#include <cstdlib>
 #include "CFunction.h"
-#include "CPolynomial.h"
-#include "CExponential.h"
-#include "CLogarithmic.h"
 #include "menu.h"
 #include <vector>
-#include <string>
 
 using namespace std;
 
@@ -29,7 +24,8 @@ int main()
     // TEST
     // Function *f = new Exponential(2, 2, 3);
     // functionList.push_back(f);
-    cout << "\t=== GESTIONE FUNZIONI ===\nBenvenuto.\n" << endl;
+    cout << "\t=== GESTIONE FUNZIONI ===\nBenvenuto.\n"
+         << endl;
 
     do
     {
@@ -71,6 +67,8 @@ int main()
             else
                 cout << "funzione non eliminata" << endl;
             break;
+
+            // TODO: controllare che la lista non sia vuota
         }
 
         case 4:
@@ -78,15 +76,19 @@ int main()
             cout << "\t=== Elimina tutte le funzioni ===\n"
                  << endl;
             functionList.clear();
+            cout << "tutte le funzioni sono state eliminate\n"
+                 << endl;
             break;
         }
 
         case 5:
         {
-            cout << "\t=== Seleziona una funzione ===\n" << endl;
+            cout << "\t=== Seleziona una funzione ===\n"
+                 << endl;
             if (functionList.size() == 0)
             {
-                cout << "Lista funzioni vuota: \nInserisci una funzione prima!\n" << endl;
+                cout << "Lista funzioni vuota: \nInserisci una funzione prima!\n"
+                     << endl;
             }
             else
             {
@@ -99,7 +101,8 @@ int main()
 
         default:
         {
-            cout << "\t=!= Scelta non valida =!=\n" << endl;
+            cout << "\t=!= Scelta non valida =!=\n"
+                 << endl;
             break;
         }
         }

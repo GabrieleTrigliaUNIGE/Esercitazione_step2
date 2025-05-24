@@ -134,7 +134,7 @@ bool valuta(vector<Function *> &list, int id)
         cout << "Inserire valore di x: \n>_ ";
         cin >> value_s;
         double value = stod(value_s);
-        cout << "Funzione valutata in x=" << value << " : " << list.at(id)->GetValue(value) << endl;
+        cout << "Funzione valutata in x=" << value << " : " << list.at(id)->GetValue(value) << endl << endl;
     }
     return true;
 }
@@ -155,7 +155,7 @@ int inserisci_ID()
     catch (const exception &e)
     {
         cerr << "ERROR: " << e.what() << " --> Valore non valido\n";
-        return (int)NAN;
+        return INT_MIN;
     }
 }
 
@@ -177,7 +177,7 @@ int conferma_scelta()
     {
         cerr << "ERROR: " << e.what() << " --> Valore non valido\n"
              << endl;
-        return (int)NAN;
+        return INT_MIN;
     }
 }
 
@@ -248,7 +248,7 @@ void inserimento_funzione(vector<Function *> &list)
 
             for (int i = 0; i < grado + 1; i++)
             {
-                cout << "Inserisci coefficiente grado ()" << i << ":\n>_  ";
+                cout << "Inserisci coefficiente grado (" << i << "):\n>_  ";
                 coeff[i] = ins_checked_input_d();
             }
 
