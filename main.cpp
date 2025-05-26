@@ -59,16 +59,23 @@ int main()
         {
             cout << "\t=== Seleziona una funzione da eliminare ===\n"
                  << endl;
-            print_list(functionList);
-            int id = inserisci_ID();
 
-            if (elimina_funzione(functionList, id - 1))
-                cout << "funzione eliminata" << endl;
+            if (functionList.size() == 0)
+            {
+                cout << "Lista funzioni vuota: \nInserisci una funzione prima!\n"
+                     << endl;
+            }
             else
-                cout << "funzione non eliminata" << endl;
-            break;
+            {
+                print_list(functionList);
+                int id = inserisci_ID();
 
-            // TODO: controllare che la lista non sia vuota
+                if (elimina_funzione(functionList, id - 1))
+                    cout << "funzione eliminata" << endl;
+                else
+                    cout << "funzione non eliminata" << endl;
+            }
+            break;
         }
 
         case 4:
@@ -110,5 +117,3 @@ int main()
 
     return 0;
 }
-
-// NICE TO HAVE: Riesecuzione delle funzioni di inserimento dati in caso di dato errato

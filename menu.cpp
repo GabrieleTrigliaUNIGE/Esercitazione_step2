@@ -132,8 +132,7 @@ bool valuta(vector<Function *> &list, int id)
     if (id >= 0 && id < (int)list.size())
     {
         cout << "Inserire valore di x: \n>_ ";
-        cin >> value_s;
-        double value = stod(value_s);
+        double value = ins_checked_input_d();
         cout << "Funzione valutata in x=" << value << " : " << list.at(id)->GetValue(value) << endl << endl;
     }
     return true;
@@ -263,7 +262,7 @@ void inserimento_funzione(vector<Function *> &list)
         }
         catch (const exception &e)
         {
-            cout << "Errore allocazione: annulamento creazione Polinomio\n"
+            cout << "Errore allocazione: annullamento creazione Polinomio\n"
                  << endl;
         }
         break;

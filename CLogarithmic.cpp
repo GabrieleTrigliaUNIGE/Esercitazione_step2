@@ -23,7 +23,6 @@ Logarithmic::Logarithmic() {
  * @brief costruttore con tutti gli attributi
  * @param b base della funzione logaritmo
  * @param k coefficiente k della funzione logaritmo
- * @param c coefficiente c della funzione logaritmo
  */
 Logarithmic::Logarithmic(double b, double k) {
     Reset();
@@ -95,7 +94,6 @@ void Logarithmic::Reset(){
  * @brief Metodo Setter per impostare una funzione logaritmo
  * @param b base della funzione logaritmo
  * @param k coefficiente k della funzione logaritmo
- * @param c coefficiente c della funzione logaritmo
  */
 void Logarithmic::SetLogarithmic(double b, double k) {
 
